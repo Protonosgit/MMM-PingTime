@@ -1,0 +1,21 @@
+<div class="mmm-ping-time">
+    {% if pingResult %}
+        <div class="ping-duration">
+            {% if pingResult == "Connected" %}
+                <i class="success-icon fas fa-check"></i>
+                <span class="success-value">{{ pingResult }}</span>
+            {% elif pingResult == "Disconnected" %}
+                <i class="warning-icon fas fa-ban"></i>
+                <span class="warning-value">{{ pingResult }}</span>
+            {% else %}
+                <span class="error-value">{{ pingResult }}</span>
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="ping-loading">
+            <i class="loading-icon fas fa-sync fa-spin"></i>
+            Connecting
+        </div>
+    {% endif %}
+</div>
+
