@@ -3,7 +3,8 @@
 Module.register("MMM-PingTime", {
     defaults: {
         updateInterval: 6000,
-        websocketUrl: "wss://echo.websocket.org"
+        websocketUrl: "wss://echo.websocket.org",
+        timeSuffix: "ms"
     },
 
     getTemplate: function() {
@@ -51,7 +52,7 @@ Module.register("MMM-PingTime", {
         this.socket.onmessage = (event) => {
             const latency = Date.now() - this.pingStartTime;
             if(event.data === "ping") {
-                this.pingResult = latency + " ms";
+                this.pingResult = latency + " " + this.config.timeSuffix;
             }
             this.updateDom();
         };
