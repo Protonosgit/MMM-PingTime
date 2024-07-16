@@ -1,7 +1,7 @@
 
 # MMM-PingTime
 
-A module for the [MagicMirror](https://github.com/MagicMirrorOrg/MagicMirror) to display the ping duration to the [Socket.io](https://socket.io/) server in ms.
+A module for the [MagicMirror](https://github.com/MagicMirrorOrg/MagicMirror) to display the ping duration to the [Socket.io](https://socket.io/) or a [Custom](#Example-server:) websocket server in ms.
 
 ## Previews
 
@@ -14,7 +14,8 @@ A module for the [MagicMirror](https://github.com/MagicMirrorOrg/MagicMirror) to
 Download the module:
 
 ```shell
-cd ~/MagicMirror/modules && git clone https://github.com/Protonosgit/MMM-PingTime
+cd ~/MagicMirror/modules 
+git clone https://github.com/Protonosgit/MMM-PingTime
 ```
 
 ### Configuration
@@ -42,8 +43,8 @@ Purely optional:
 | `updateInterval` | The interval in which ping requests are sent  | `6000` (6 sec)| False ||
 | `timePrefix` | The string which will be displayed before the ping  || False ||
 | `timeSuffix` | The string which will be displayed after the ping  | `ms`| False ||
-| `connectedText` | The string which will be displayed before the ping  | `Connected`| False ||
-| `disconnectedText` | The string which will be displayed after the ping  | `Disconnected`| False ||
+| `connectedText` | The text which is shown after connecting  | `Connected`| False ||
+| `disconnectedText` | The string which is shown while offline  | `Disconnected`| False ||
 
 ### Host your own ping server
 
@@ -95,3 +96,7 @@ wss.on('connection', function connection(ws) {
 });
 
 ```
+
+### Contributions
+are always wellcome so feel free to participate!
+: )
