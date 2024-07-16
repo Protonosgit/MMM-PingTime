@@ -4,7 +4,10 @@ Module.register("MMM-PingTime", {
     defaults: {
         updateInterval: 6000,
         websocketUrl: "wss://echo.websocket.org",
-        timeSuffix: "ms"
+        timePrefix: "",
+        timeSuffix: "ms",
+        connectedText: "Connected",
+        disconnectedText: "Disconnected"
     },
 
     getTemplate: function() {
@@ -14,7 +17,9 @@ Module.register("MMM-PingTime", {
     getTemplateData: function() {
         return {
             pingResult: this.pingResult,
-            config: this.config
+            config: this.config,
+            connectedText: this.config.connectedText,
+            disconnectedText: this.config.disconnectedText
         };
     },
 
@@ -32,14 +37,14 @@ Module.register("MMM-PingTime", {
 
         this.socket.onopen = () => {
             console.log("WebSocket connected");
-            this.pingResult = "Connected";
+            this.pingResult = "cn";
             this.updateDom();
             this.startPinging();
         };
 
         this.socket.onclose = () => {
             console.log("WebSocket disconnected");
-            this.pingResult = "Disconnected";
+            this.pingResult = "dc";
             this.pingStartTime = 0;
             this.updateDom();
             this.stopPinging();
@@ -52,7 +57,7 @@ Module.register("MMM-PingTime", {
         this.socket.onmessage = (event) => {
             const latency = Date.now() - this.pingStartTime;
             if(event.data === "ping") {
-                this.pingResult = latency + " " + this.config.timeSuffix;
+                this.pingResult = this.config.timePrefix + latency + " " + this.config.timeSuffix;
             }
             this.updateDom();
         };

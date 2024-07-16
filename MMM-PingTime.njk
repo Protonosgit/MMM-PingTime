@@ -1,12 +1,12 @@
 <div class="mmm-ping-time">
     {% if pingResult %}
         <div class="ping-duration">
-            {% if pingResult == "Connected" %}
+            {% if pingResult == "cn" %}
                 <i class="success-icon fas fa-check"></i>
-                <span class="success-value">{{ pingResult }}</span>
-            {% elif pingResult == "Disconnected" %}
+                <span class="success-value">{{ connectedText }}</span>
+            {% elif pingResult == "dc" %}
                 <i class="warning-icon fas fa-ban"></i>
-                <span class="warning-value">{{ pingResult }}</span>
+                <span class="warning-value">{{ disconnectedText }}</span>
             {% else %}
                 <span class="error-value">{{ pingResult }}</span>
             {% endif %}
