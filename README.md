@@ -1,7 +1,7 @@
 
 # MMM-PingTime
 
-A module for the [MagicMirror](https://github.com/MagicMirrorOrg/MagicMirror) to display the ping duration to the [Socket.io](https://socket.io/) or a [Custom](#Example-server:) websocket server in ms.
+A module for the [MagicMirror](https://github.com/MagicMirrorOrg/MagicMirror) to display the ping duration to the [websocket.org](https://websocket.org/tools/websocket-echo-server/) or a Custom websocket echo server in ms.
 
 ## Previews
 
@@ -45,14 +45,18 @@ Purely optional:
 | `timeSuffix` | The string which will be displayed after the ping  | `ms`| False ||
 | `connectedText` | The text which is shown after connecting  | `Connected`| False ||
 | `disconnectedText` | The string which is shown while offline  | `Disconnected`| False ||
+| `fontColor` | Changes the default text color  | `--color-text`| False ||
+| `fontSize` | Changes the default font size  | `1`| False ||
 
 ### Host your own ping server
 
-If you would like to host your own websocket endpoint you need to make sure, that the server responds with `pong` to an incomming `ping` message!<br>
-If the response is different it will be ignored!<br>
+If you would like to host your own websocket endpoint you need to make sure, that it is set up as an echo server!<br>
+Once the client sends the string: `ping` to the server, the same message should be returned.<br>
 The official websocket source should work fine though (in most cases).
 
-### Example server:
+
+### [Example server:](https://socket.io/docs/v4/server-api/)
+
 <b>Python<b>
 
 ```python
@@ -63,7 +67,7 @@ async def handle_connection(websocket, path):
     try:
         async for message in websocket:
             if message.lower() == "ping":
-                await websocket.send("pong")
+                await websocket.send("ping")
     except websockets.exceptions.ConnectionClosedError:
         pass
 
@@ -89,7 +93,7 @@ wss.on('connection', function connection(ws) {
     console.log('Ping received: %s', message);
 
     if (message.toString().toLowerCase() === 'ping') {
-      ws.send('pong');
+      ws.send('ping');
     }
   });
 

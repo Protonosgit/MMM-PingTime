@@ -7,7 +7,9 @@ Module.register("MMM-PingTime", {
         timePrefix: "",
         timeSuffix: "ms",
         connectedText: "Connected",
-        disconnectedText: "Disconnected"
+        disconnectedText: "Disconnected",
+        fontColor: "--color-text",
+        fontSize: 1
     },
 
     getTemplate: function() {
