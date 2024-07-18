@@ -10,7 +10,9 @@ Module.register("MMM-PingTime", {
         loadingIcon: 'loading-icon fas fa-sync fa-spin',
         connectedIcon: 'success-icon fas fa-check',
         disconnectedIcon: 'warning-icon fas fa-ban',
-        fontColor: "--color-text",
+        pingFontColor: "--color-text",
+        connectedFontCollor: "--color-text",
+        disconnectedFontColor: "--color-text",
         fontSize: 1,
         server: {
             websocketUrl: "wss://echo.websocket.org",
@@ -66,7 +68,7 @@ Module.register("MMM-PingTime", {
 
         this.socket.onmessage = (event) => {
             const latency = Date.now() - this.pingStartTime;
-            if(event.data === this.config.messages.incomming || this.config.server.bypassCheck) {
+            if(event.data === this.config.server.incomingMessage || this.config.server.bypassCheck) {
                 this.pingResult = this.config.timePrefix + latency + " " + this.config.timeSuffix;
             }
             this.updateDom();
@@ -89,7 +91,7 @@ Module.register("MMM-PingTime", {
     ping: function() {
         if (this.socket && this.socket.readyState === WebSocket.OPEN) {
             this.pingStartTime = Date.now();
-            this.socket.send(this.config.messages.outgoing);
+            this.socket.send(this.config.server.outgoingMessage);
         }
     },
 

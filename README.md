@@ -43,7 +43,7 @@ Add the module configuration to your `config.js` file.
 
 | Option |  Description | Default | Required |
 |---|---|---|---|
-| `updateInterval` | The interval in which ping requests are sent  | `4000` (4.5 sec)| False ||
+| `updateInterval` | The interval in which ping requests are sent  | `4000` (4 sec)| False ||
 | `timePrefix` | The string which will be displayed before the ping  || False ||
 | `timeSuffix` | The string which will be displayed after the ping  | `ms`| False ||
 | `connectedText` | The text which is shown after connecting  | `Connected`| False ||
