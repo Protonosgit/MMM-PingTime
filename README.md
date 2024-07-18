@@ -11,7 +11,9 @@ A module for the [MagicMirror](https://github.com/MagicMirrorOrg/MagicMirror) to
 
 ### Setup
 
-Download the module:
+No dependencies required!
+Just download the module:<br>
+
 
 ```shell
 cd ~/MagicMirror/modules 
@@ -29,18 +31,19 @@ Add the module configuration to your `config.js` file.
   headder:'Network',
   config: {
     // See options bellow :)
+    server:{
+      // See: Host your own ping server
+    }
   }
 },
 ```
 
 ### Config Options
 
-Purely optional:
 
 | Option |  Description | Default | Required |
 |---|---|---|---|
-| `websocketUrl` | Host your own ping server (this shouldn't be changed) | `wss://echo.websocket.org`| False ||
-| `updateInterval` | The interval in which ping requests are sent  | `6000` (6 sec)| False ||
+| `updateInterval` | The interval in which ping requests are sent  | `4000` (4.5 sec)| False ||
 | `timePrefix` | The string which will be displayed before the ping  || False ||
 | `timeSuffix` | The string which will be displayed after the ping  | `ms`| False ||
 | `connectedText` | The text which is shown after connecting  | `Connected`| False ||
@@ -52,7 +55,16 @@ Purely optional:
 
 If you would like to host your own websocket endpoint you need to make sure, that it is set up as an echo server!<br>
 Once the client sends the string: `ping` to the server, the same message should be returned.<br>
-The official websocket source should work fine though (in most cases).
+The official websocket source should work fine though (in most cases).<br>
+<br>
+<b>Everything here goes into the `server` tag INSIDE the config!!<b>
+
+| Server Option |  Description | Default | Required |
+|---|---|---|---|
+| `websocketUrl` | Defines the server url  | `wss://echo.websocket.org`| False ||
+| `outgoingMessage` | Defines the message sent in an interval  |`ping`| False ||
+| `incomingMessage` | Defines the expected response (diffenrent responses will be ignored)  | `ping`| False ||
+| `bypassCheck` | Ignores the `incommingMessage` check above  | `False`| False ||
 
 
 ### [Example server:](https://socket.io/docs/v4/server-api/)

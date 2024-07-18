@@ -2,14 +2,22 @@
 
 Module.register("MMM-PingTime", {
     defaults: {
-        updateInterval: 6000,
-        websocketUrl: "wss://echo.websocket.org",
+        updateInterval: 4000,
         timePrefix: "",
         timeSuffix: "ms",
         connectedText: "Connected",
         disconnectedText: "Disconnected",
+        loadingIcon: 'loading-icon fas fa-sync fa-spin',
+        connectedIcon: 'success-icon fas fa-check',
+        disconnectedIcon: 'warning-icon fas fa-ban',
         fontColor: "--color-text",
-        fontSize: 1
+        fontSize: 1,
+        server: {
+            websocketUrl: "wss://echo.websocket.org",
+            outgoingMessage: "ping",
+            incomingMessage: "ping",
+            bypassCheck: false
+        }
     },
 
     getTemplate: function() {
@@ -35,7 +43,7 @@ Module.register("MMM-PingTime", {
     },
 
     connect: function() {
-        this.socket = new WebSocket(this.config.websocketUrl);
+        this.socket = new WebSocket(this.config.server.websocketUrl);
 
         this.socket.onopen = () => {
             console.log("WebSocket connected");
@@ -58,7 +66,7 @@ Module.register("MMM-PingTime", {
 
         this.socket.onmessage = (event) => {
             const latency = Date.now() - this.pingStartTime;
-            if(event.data === "ping") {
+            if(event.data === this.config.messages.incomming || this.config.server.bypassCheck) {
                 this.pingResult = this.config.timePrefix + latency + " " + this.config.timeSuffix;
             }
             this.updateDom();
@@ -81,7 +89,7 @@ Module.register("MMM-PingTime", {
     ping: function() {
         if (this.socket && this.socket.readyState === WebSocket.OPEN) {
             this.pingStartTime = Date.now();
-            this.socket.send("ping");
+            this.socket.send(this.config.messages.outgoing);
         }
     },
 
