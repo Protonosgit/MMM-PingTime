@@ -11,7 +11,7 @@ A module for the [MagicMirror](https://github.com/MagicMirrorOrg/MagicMirror) to
 
 ### Setup
 
-No dependencies required!
+No dependencies required !!<br>
 Just download the module:<br>
 
 
@@ -31,6 +31,7 @@ Add the module configuration to your `config.js` file.
   headder:'Network',
   config: {
     // See options bellow :)
+
     server:{
       // See: Host your own ping server
     }
@@ -40,16 +41,21 @@ Add the module configuration to your `config.js` file.
 
 ### Config Options
 
-
 | Option |  Description | Default | Required |
 |---|---|---|---|
 | `updateInterval` | The interval in which ping requests are sent  | `4000` (4 sec)| False ||
+| `startupDelay` | Defines the delay before a connection is made  | `2000` (2 sec)| False ||
 | `timePrefix` | The string which will be displayed before the ping  || False ||
 | `timeSuffix` | The string which will be displayed after the ping  | `ms`| False ||
 | `connectedText` | The text which is shown after connecting  | `Connected`| False ||
 | `disconnectedText` | The string which is shown while offline  | `Disconnected`| False ||
-| `fontColor` | Changes the default text color  | `--color-text`| False ||
+| `pingFontColor` | Changes the default text color  | `--color-text`| False ||
+| `connectedFontCollor` | Changes the default text color  | `--color-text`| False ||
+| `disconnectedFontColor` | Changes the default text color  | `--color-text`| False ||
 | `fontSize` | Changes the default font size  | `1`| False ||
+| `loadingIcon` | Changes the default loading spinner  | `loading-icon fas fa-sync fa-spin`| False ||
+| `connectedIcon` | Changes the default icon  | `success-icon fas fa-check`| False ||
+| `disconnectedIcon` | Changes the default icon   | `warning-icon fas fa-ban`| False ||
 
 ### Host your own ping server
 
@@ -57,7 +63,7 @@ If you would like to host your own websocket endpoint you need to make sure, tha
 Once the client sends the string: `ping` to the server, the same message should be returned.<br>
 The official websocket source should work fine though (in most cases).<br>
 <br>
-<b>Everything here goes into the `server` tag INSIDE the config!!<b>
+<b>Everything here goes into the `server` tag INSIDE the config!!</b>
 
 | Server Option |  Description | Default | Required |
 |---|---|---|---|

@@ -3,6 +3,7 @@
 Module.register("MMM-PingTime", {
     defaults: {
         updateInterval: 4000,
+        startupDelay: 2000,
         timePrefix: "",
         timeSuffix: "ms",
         connectedText: "Connected",
@@ -41,7 +42,7 @@ Module.register("MMM-PingTime", {
 
         setTimeout(() => {
             this.connect();
-        }, 2000);
+        }, this.config.startupDelay);
     },
 
     connect: function() {

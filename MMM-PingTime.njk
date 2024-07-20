@@ -8,7 +8,7 @@
                 <i class="{{config.disconnectedIcon}}"></i>
                 <span class="warning-value" style="color: {{config.disconnectedFontColor}}">{{ disconnectedText }}</span>
             {% else %}
-                <span>{{ pingResult }}</span>
+                <span style="color: {{config.pingFontColor}}">{{ pingResult }}</span>
             {% endif %}
         </div>
     {% else %}
