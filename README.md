@@ -1,7 +1,7 @@
 
 # MMM-PingTime
 
-A module for the [MagicMirror](https://github.com/MagicMirrorOrg/MagicMirror) to display the ping duration to the [websocket.org](https://websocket.org/tools/websocket-echo-server/) or a Custom websocket echo server in ms.
+A module for the [MagicMirror](https://github.com/MagicMirrorOrg/MagicMirror) which displays the ping duration to [websocket.org](https://websocket.org/tools/websocket-echo-server/) or a Custom websocket echo server in ms.
 
 ## Previews
 
@@ -48,19 +48,20 @@ Add the module configuration to your `config.js` file.
 | `timePrefix` | The string which will be displayed before the ping  || False ||
 | `timeSuffix` | The string which will be displayed after the ping  | `ms`| False ||
 | `connectedText` | The text which is shown after connecting  | `Connected`| False ||
-| `disconnectedText` | The string which is shown while offline  | `Disconnected`| False ||
+| `disconnectedText` | The text which is shown while offline  | `Disconnected`| False ||
 | `pingFontColor` | Changes the default text color  | `--color-text`| False ||
 | `connectedFontCollor` | Changes the default text color  | `--color-text`| False ||
 | `disconnectedFontColor` | Changes the default text color  | `--color-text`| False ||
 | `fontSize` | Changes the default font size  | `1`| False ||
-| `loadingIcon` | Changes the default loading spinner  | `loading-icon fas fa-sync fa-spin`| False ||
+| `loadingIcon` | Changes the default loading indicator  | `loading-icon fas fa-sync fa-spin`| False ||
 | `connectedIcon` | Changes the default icon  | `success-icon fas fa-check`| False ||
 | `disconnectedIcon` | Changes the default icon   | `warning-icon fas fa-ban`| False ||
 
 ### Host your own ping server
 
-If you would like to host your own websocket endpoint you need to make sure, that it is set up as an echo server!<br>
+By default this module requires an echo server which returns the same message sent by the client<br>
 Once the client sends the string: `ping` to the server, the same message should be returned.<br>
+However if you wish to change this behaviour you can do so.
 The official websocket source should work fine though (in most cases).<br>
 <br>
 <b>Everything here goes into the `server` tag INSIDE the config!!</b>
