@@ -12,7 +12,8 @@ A module for the [MagicMirror](https://github.com/MagicMirrorOrg/MagicMirror) wh
 ### Setup
 
 No dependencies required !!<br>
-Just download the module:<br>
+Just download the module and restart MM<br>
+DONE :)
 
 
 ```shell
@@ -40,6 +41,7 @@ Add the module configuration to your `config.js` file.
 ```
 
 ### Config Options
+ <b>Everthing here is optional!!!</b>
 
 | Option |  Description | Default | Required |
 |---|---|---|---|
