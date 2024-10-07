@@ -61,7 +61,7 @@ Add the module configuration to your `config.js` file.
 
 ### Host your own ping server
 
-By default this module requires an echo server which returns the same message sent by the client<br>
+By default this module uses a public echo server which returns the same message sent by the client. This can be against your personal privacy preferences or you might want a server in a specific geographic location.<br>
 Once the client sends the string: `ping` to the server, the same message should be returned.<br>
 However if you wish to change this behaviour you can do so.
 The official websocket source should work fine though (in most cases).<br>
