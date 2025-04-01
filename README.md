@@ -47,7 +47,7 @@ Add the module configuration to your `config.js` file.
 |---|---|---|---|
 | `updateInterval` | The interval in which ping requests are sent  | `4000` (4 sec)| False ||
 | `startupDelay` | Defines the delay before a connection is made  | `2000` (2 sec)| False ||
-| `timePrefix` | The string which will be displayed before the ping  || False ||
+| `timePrefix` | The string which will be displayed in front of the ping  || False ||
 | `timeSuffix` | The string which will be displayed after the ping  | `ms`| False ||
 | `connectedText` | The text which is shown after connecting  | `Connected`| False ||
 | `disconnectedText` | The text which is shown while offline  | `Disconnected`| False ||

@@ -1,5 +1,3 @@
-
-
 Module.register("MMM-PingTime", {
     defaults: {
         updateInterval: 4000,
@@ -12,7 +10,7 @@ Module.register("MMM-PingTime", {
         connectedIcon: 'success-icon fas fa-check',
         disconnectedIcon: 'warning-icon fas fa-ban',
         pingFontColor: "--color-text",
-        connectedFontCollor: "--color-text",
+        connectedFontColor: "--color-text",
         disconnectedFontColor: "--color-text",
         fontSize: 1,
         server: {
@@ -55,16 +53,22 @@ Module.register("MMM-PingTime", {
             this.startPinging();
         };
 
+        this.isReconnecting = false;
+
         this.socket.onclose = () => {
             console.log("WebSocket disconnected");
             this.pingResult = "dc";
             this.pingStartTime = 0;
             this.updateDom();
             this.stopPinging();
-            // Try to reconnect after a delay
-            setTimeout(() => {
-                this.connect();
-            }, 5000);
+        
+            if (!this.isReconnecting) {
+                this.isReconnecting = true;
+                setTimeout(() => {
+                    this.isReconnecting = false;
+                    this.connect();
+                }, 5000);
+            }
         };
 
         this.socket.onmessage = (event) => {
@@ -74,10 +78,15 @@ Module.register("MMM-PingTime", {
             }
             this.updateDom();
         };
+
+        this.socket.onerror = (error) => {
+            console.error("WebSocket error: ", error);
+            this.pingResult = "err";
+            this.updateDom();
+        };
     },
 
     startPinging: function() {
-        console.log("Starting pinging");
         this.pingInterval = setInterval(() => {
             this.ping();
         }, this.config.updateInterval);
@@ -86,6 +95,7 @@ Module.register("MMM-PingTime", {
     stopPinging: function() {
         if (this.pingInterval) {
             clearInterval(this.pingInterval);
+            this.pingInterval = null;
         }
     },
 
