@@ -52,7 +52,7 @@ Add the module configuration to your `config.js` file.
 | `connectedText` | The text which is shown after connecting  | `Connected`| False ||
 | `disconnectedText` | The text which is shown while offline  | `Disconnected`| False ||
 | `pingFontColor` | Changes the default text color  | `--color-text`| False ||
-| `connectedFontCollor` | Changes the default text color  | `--color-text`| False ||
+| `connectedFontColor` | Changes the default text color  | `--color-text`| False ||
 | `disconnectedFontColor` | Changes the default text color  | `--color-text`| False ||
 | `fontSize` | Changes the default font size  | `1`| False ||
 | `loadingIcon` | Changes the default loading indicator  | `loading-icon fas fa-sync fa-spin`| False ||
